@@ -3,6 +3,9 @@ use clap::Parser;
 use io::Write;
 use json;
 use std::io;
+// use directories_next::ProjectDirs;
+// use grateful_cli::utils;
+mod utils;
 
 /// Simple program to greet a person
 #[derive(Parser)]
@@ -11,15 +14,18 @@ struct Cli {
     pattern: String,
 }
 
+// returns true if the last entry was today 
 fn check_last_entry_today() -> bool {
     let mut grateful: json::JsonValue = get_json();
     let last_entry: json::JsonValue = grateful["grateful"].pop();
-    let date_str = last_entry[0].dump();
+    let date_str = last_entry[0].dump().replace("\"","");
     let today_str = chrono::offset::Local::today().to_string();
-    if date_str == today_str {
-        return false;
+    println!("{} , {}", date_str.as_str(), today_str.as_str());
+    if date_str.as_str() == today_str.as_str() {
+        println!("{} == {} is true", date_str.as_str(), today_str.as_str());
+        return true;
     }
-    true
+    false
 }
 
 // gets user input, adds it to the json
@@ -44,7 +50,11 @@ fn grateful_repl() -> Vec<String> {
 }
 
 fn get_json() -> json::JsonValue {
-    match std::fs::read_to_string("grateful.json") {
+    // if there is no directory create it
+    utils::create_grateful_dir();
+    // if there is no grateful.json, create it
+    utils::init_file(utils::get_grateful_json_path().as_str()).unwrap();
+    match std::fs::read_to_string(utils::get_grateful_json_path().as_str()) {
         Ok(data_str) => {
             let data = json::parse(data_str.as_str()).unwrap();
             data
@@ -66,7 +76,7 @@ fn add_grateful_entry() -> io::Result<()> {
     let mut f = std::fs::OpenOptions::new()
         .write(true)
         .truncate(true)
-        .open("./grateful.json")?;
+        .open(utils::get_grateful_json_path().as_str())?;
     f.write_all(json::stringify_pretty(grateful, 4u16).as_bytes())?;
     f.flush()?;
 

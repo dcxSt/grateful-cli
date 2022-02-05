@@ -22,4 +22,6 @@ path = "src/main.rs"
 [dependencies]
 chrono = "0.4.19"
 clap = { version = "3.0.14", features = ["derive"] }
+directories-next = "2.0.0"
 json = "0.12.4"
+log = "0.4.14"
