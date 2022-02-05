@@ -3,9 +3,11 @@ use clap::Parser;
 use io::Write;
 use json;
 use std::io;
+use log;
 // use directories_next::ProjectDirs;
 // use grateful_cli::utils;
 mod utils;
+
 
 /// Simple program to greet a person
 #[derive(Parser)]
@@ -20,9 +22,9 @@ fn check_last_entry_today() -> bool {
     let last_entry: json::JsonValue = grateful["grateful"].pop();
     let date_str = last_entry[0].dump().replace("\"","");
     let today_str = chrono::offset::Local::today().to_string();
-    println!("{} , {}", date_str.as_str(), today_str.as_str());
+    log::trace!("{} , {}", date_str.as_str(), today_str.as_str());
     if date_str.as_str() == today_str.as_str() {
-        println!("{} == {} is true", date_str.as_str(), today_str.as_str());
+        log::trace!("{} == {} is true", date_str.as_str(), today_str.as_str());
         return true;
     }
     false
