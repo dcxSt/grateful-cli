@@ -6,13 +6,11 @@ use log;
 
 const GRATEFUL_DIR_NAME: &str = "grateful";
 
-// (Code taken from tempus)
 /// Return the value of $HOME or panic if it doesn't exist
 pub fn get_home_dir() -> String {
     env::var("HOME").unwrap_or_else(|e| panic!("error getting $HOME env variable: {}", e))
 }
 
-// (Code taken from tempus)
 /// Create a directory & all parent directories if they don't exist
 /// & return the name. Panic if an error occurs while creating the dir
 pub fn create_grateful_dir() {
@@ -24,7 +22,6 @@ pub fn create_grateful_dir() {
     });
 }
 
-// (Code taken from tempus)
 /// Open a file for appending or create it if it doesn't exist
 /// Panic on error, return the file handle
 pub fn init_file(path: &str) -> std::io::Result<()> {
@@ -40,7 +37,7 @@ pub fn init_file(path: &str) -> std::io::Result<()> {
                 .write(true)
                 .open(&path)
                 .expect(&format!("Error opening {}", &path));
-            f.write_all("{\"grateful\":[[\"1775-12-16\",\"Jane\",\"Austen\",\"This is a dummy entry\"]]}".as_bytes())?;
+            f.write_all(b"{\"grateful\":[]}")?;
             f.flush()?;
         }
     }
