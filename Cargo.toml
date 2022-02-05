@@ -1,0 +1,25 @@
+[package]
+name = "greatful-cli"
+version = "0.0.1"
+authors = [
+  "Stephen Fay <dcxstephen@gmail.com>"
+]
+license = "MIT"
+description = "A tool that makes you happy"
+readme = "README.md"
+homepage = "https://github.com/dcxSt/grateful-cli"
+repository = "https://github.com/dcxSt/grateful-cli"
+keywords = ["cli", "happy", "light", "lightweight", "grateful", "fun"]
+categories = ["command-line-utilities"]
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[[bin]]
+name = "grateful"
+path = "src/main.rs"
+
+[dependencies]
+chrono = "0.4.19"
+clap = { version = "3.0.14", features = ["derive"] }
+json = "0.12.4"
