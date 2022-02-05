@@ -30,8 +30,6 @@ The **only** other commands are `grateful history` and `grateful last`. These co
 
 *put gif here*
 
-### Appendix
-
 Does this really work? Yes it does! Doing this excersise every day actually makes you happier. *link to an article*
 
 
@@ -39,26 +37,16 @@ Does this really work? Yes it does! Doing this excersise every day actually make
 
 - [ ] Implement tests
 - [ ] Better handling of the args
+- [ ] Refactor 
+- [ ] Better logs (trace error etc)
+- [ ] bugfix, `grateful last` returns the first element of the json file instead of the last one. 
 
-### MISC
+If you like this cli and want a new feature just send me a message! Also, feel free to contribute code if you feel like it. 
 
-Code to reset the grateful json.
+### Appendix / MISC
 
-```rust
-use json::object;
+Thanks [Jake](https://github.com/jakewilson/) for inspiring this project. Btw, I stole some of your code from your [tempus](https://github.com/jakewilson/tempus) cli.
 
-// over-writes grateful.json to {"grateful":[]}
-fn reset_json() -> io::Result<()> {
-    let data = object! {
-        "grateful": []
-    };
-    let mut f = std::fs::OpenOptions::new()
-        .write(true)
-        .truncate(true)
-        .open("./grateful.json")?;
-    f.write_all(json::stringify_pretty(data, 4u16).as_bytes())?;
-    f.flush()?;
+Statement of Apology: I am a really stupid person, version 0.0.1 DOESN'T WORK, I'm really sorry about that. Version 0.0.2 works. Please forgive me for this very poor code, it's my first package. I'm also dyslexic, the first package I pushed was miss-spelled "greatful-cli" instead of "grateful-cli". I will yank it and contact the rust people to ask them about removing it. 
 
-    Ok(())
-}
-```
+
