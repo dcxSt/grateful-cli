@@ -4,20 +4,24 @@ Grateful is a command line interface (CLI) that enables you to boost your happyn
 
 ### Quick start
 
-Install with this command *(macOS?, windows?, linux? does it work cross platform?)*
+**Installation**
 
-`command to install`
+Installing this CLI requires `cargo`, the rust package manager. If you don't have it you can get it on mac with `brew install cargo`. Once you have `cargo` install the CLI with
+
+`cargo install grateful-cli`
+
+**Use**
 
 Enter 
 
 `grateful`
 
-into your terminal and it will prompt you to enter three things you're grateful for. 
+into your terminal and it will prompt you to enter three things you're grateful for. Just type 
 
 ```
-What are you grateful for today? (3) > beans
-What are you grateful for today? (2) > carrots
-What are you grateful for today? (1) > potatoes
+What are you grateful for today? (3) > beans, I really like beans
+What are you grateful for today? (2) > carrots, mmm so fresh
+What are you grateful for today? (1) > potatoes, can't do without 'em
 ```
 
 The **only** other commands are `grateful history` and `grateful last`. These commands display all of your entries and your last entry respectively. 
@@ -30,6 +34,11 @@ The **only** other commands are `grateful history` and `grateful last`. These co
 
 Does this really work? Yes it does! Doing this excersise every day actually makes you happier. *link to an article*
 
+
+### Todo
+
+- [ ] Implement tests
+- [ ] Better handling of the args
 
 ### MISC
 
