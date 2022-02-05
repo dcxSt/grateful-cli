@@ -9,7 +9,7 @@ description = "A tool that makes you happy"
 readme = "README.md"
 homepage = "https://github.com/dcxSt/grateful-cli"
 repository = "https://github.com/dcxSt/grateful-cli"
-keywords = ["cli", "happy", "light", "lightweight", "grateful", "fun"]
+keywords = ["cli", "happy", "light", "grateful"]
 categories = ["command-line-utilities"]
 edition = "2021"
 
