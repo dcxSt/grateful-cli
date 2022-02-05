@@ -10,6 +10,8 @@ Installing this CLI requires `cargo`, the rust package manager. If you don't hav
 
 `cargo install grateful-cli`
 
+If you're on mac and you don't want to install `cargo` you can also just download the binary `./target/release/grateful` and add it to your `$PATH` 
+
 **Use**
 
 Enter 
@@ -28,7 +30,7 @@ The **only** other commands are `grateful history` and `grateful last`. These co
 
 ### Demo video / gif
 
-*put gif here*
+![Example use of the cli](./img/cli-use.png)
 
 Does this really work? Yes it does! Doing this excersise every day actually makes you happier. *link to an article*
 
@@ -40,6 +42,7 @@ Does this really work? Yes it does! Doing this excersise every day actually make
 - [ ] Refactor 
 - [ ] Better logs (trace error etc)
 - [ ] bugfix, `grateful last` returns the first element of the json file instead of the last one. 
+- [ ] Find and link supporting documentation that validates claims about how this makes you happy. 
 
 If you like this cli and want a new feature just send me a message! Also, feel free to contribute code if you feel like it. 
 
