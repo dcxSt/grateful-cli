@@ -131,7 +131,9 @@ fn main() -> io::Result<()> {
         }
         Err(_) => {
             if check_last_entry_today() {
-                println!("You've already written what you're grateful for today. \nEnding program, see ya tomorow!")
+                println!("You've already written what you're grateful for today.");
+                println!("You can view your history of gratefulness with `grateful history`");
+                println!("Ending program, see ya tomorow!");
             } else {
                 add_grateful_entry()?;
             }
