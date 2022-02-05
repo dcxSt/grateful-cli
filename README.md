@@ -4,21 +4,15 @@ Grateful is a command line interface (CLI) that enables you to boost your happyn
 
 ### Quick start
 
-**Installation**
-
 Installing this CLI requires `cargo`, the rust package manager. If you don't have it you can get it on mac with `brew install cargo`. Once you have `cargo` install the CLI with
 
-`cargo install grateful-cli`
+```
+cargo install grateful-cli
+```
 
 If you're on mac and you don't want to install `cargo` you can also just download the binary `./target/release/grateful` and add it to your `$PATH` 
 
-**Use**
-
-Enter 
-
-`grateful`
-
-into your terminal and it will prompt you to enter three things you're grateful for. Just type 
+Enter `grateful` into your terminal and it will prompt you to enter three things you're grateful for. Just type 
 
 ```
 What are you grateful for today? (3) > beans, I really like beans
@@ -40,6 +34,9 @@ Does this really work? Yes it does! Doing this excersise every day actually make
 - [ ] Implement tests
 - [ ] Better handling of the args
 - [ ] Refactor 
+  - [ ] improve comments
+  - [ ] better file structure
+  - [ ] make it more readable in general
 - [ ] Better logs (trace error etc)
 - [ ] bugfix, `grateful last` returns the first element of the json file instead of the last one. 
 - [ ] Find and link supporting documentation that validates claims about how this makes you happy. 
