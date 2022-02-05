@@ -31,3 +31,25 @@ The **only** other commands are `grateful history` and `grateful last`. These co
 Does this really work? Yes it does! Doing this excersise every day actually makes you happier. *link to an article*
 
 
+### MISC
+
+Code to reset the grateful json.
+
+```rust
+use json::object;
+
+// over-writes grateful.json to {"grateful":[]}
+fn reset_json() -> io::Result<()> {
+    let data = object! {
+        "grateful": []
+    };
+    let mut f = std::fs::OpenOptions::new()
+        .write(true)
+        .truncate(true)
+        .open("./grateful.json")?;
+    f.write_all(json::stringify_pretty(data, 4u16).as_bytes())?;
+    f.flush()?;
+
+    Ok(())
+}
+```
