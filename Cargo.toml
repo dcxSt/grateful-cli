@@ -2,7 +2,8 @@
 name = "grateful-cli"
 version = "0.0.4"
 authors = [
-  "Stephen Fay <dcxstephen@gmail.com>"
+  "Stephen Fay <dcxstephen@gmail.com>",
+  "Jake Wilson"
 ]
 license = "MIT"
 description = "A tool that makes you happy"
