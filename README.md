@@ -40,7 +40,7 @@ Does this really work? Yes it does! Doing this excersise every day actually make
   - [ ] better file structure
   - [ ] make it more readable in general
 - [ ] Better logs (trace error etc)
-- [ ] bugfix, `grateful last` returns the first element of the json file instead of the last one. 
+- [x] bugfix, `grateful last` returns the first element of the json file instead of the last one.
 - [ ] Find and link supporting documentation that validates claims about how this makes you happy. 
 - [ ] Prettier displays
 - [ ] Eliminate need for dummy grateful statement
