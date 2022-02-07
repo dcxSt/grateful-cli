@@ -4,8 +4,6 @@ use io::Write;
 use json;
 use std::io;
 use log;
-// use directories_next::ProjectDirs;
-// use grateful_cli::utils;
 mod utils;
 
 
