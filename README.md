@@ -43,7 +43,7 @@ Does this really work? Yes it does! Doing this excersise every day actually make
 - [x] bugfix, `grateful last` returns the first element of the json file instead of the last one.
 - [ ] Find and link supporting documentation that validates claims about how this makes you happy. 
 - [ ] Prettier displays
-- [ ] Eliminate need for dummy grateful statement
+- [x] Eliminate need for dummy grateful statement
 
 If you like this cli and want a new feature just send me a message! Also, feel free to contribute code if you feel like it. 
 
