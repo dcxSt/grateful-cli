@@ -86,34 +86,6 @@ fn add_grateful_entry() -> io::Result<()> {
 
 
 fn main() -> io::Result<()> {
-    // // let mut grateful = object! {
-    // //     "grateful": []
-    // // };
-    // let mut grateful:json::JsonValue = get_json();
-
-    // // let data1 = vec!["2022-02-04", "a", "b", "c"];
-    // // let data2 = vec!["2022-02-03", "x", "y", "z"];
-
-    // // grateful["grateful"].push(data1);
-    // // grateful["grateful"].push(data2);
-
-    // let entry: Vec<String> = grateful_repl();
-    // grateful["grateful"].push(entry);
-
-    // println!("{}", grateful.dump());
-
-    // // grateful = object!{
-    // //     "grateful":[]
-    // // };
-
-    // // let grateful_str:String = grateful.dump();
-    // let mut f = std::fs::OpenOptions::new().write(true).truncate(true).open("./grateful.json")?;
-    // f.write_all(json::stringify_pretty(grateful, 4u16).as_bytes())?;
-    // f.flush()?;
-
-    // println!("{}", check_last_entry_today());
-    // add_grateful_entry()?;
-
     match Cli::try_parse() {
         Ok(r) => {
             if r.pattern == "history".to_string() {
@@ -143,7 +115,15 @@ fn main() -> io::Result<()> {
     Ok(())
 }
 
-// #[cfg(test)]
-// mod tests() {
-//     #[test]
-// }
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_get_json() {
+        let _jfile : json::JsonValue = get_json();
+    }
+}
+
+
+

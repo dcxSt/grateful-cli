@@ -53,3 +53,33 @@ pub fn get_grateful_json_path() -> String {
 }
 
 
+#[cfg(test)]
+mod tests {
+    use super::*;
+    
+    // this is to test that get_grateful_json_path and init_file are doing what they 
+    // should be doing
+    #[test]
+    fn test_init() {
+        assert_eq!(init_file(get_grateful_json_path().as_str()).unwrap() , ());
+    }
+
+    // test that get_home_dir is not failing
+    #[test]
+    fn test_get_home_dir() {
+        fn type_of<T>(_: &T) -> String {
+            format!("{}", std::any::type_name::<T>())
+        }
+        println!("{}", get_home_dir());
+        assert_eq!(type_of(&get_home_dir()) , type_of(&String::from("")));
+    }
+
+    #[test]
+    fn test_create_grateful_dir() {
+        create_grateful_dir(); // this might panic if it's not working
+    }
+}
+
+
+
+
