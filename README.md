@@ -24,7 +24,7 @@ The **only** other commands are `grateful history` and `grateful last`. These co
 
 ### Demo 
 
-![Example use of the cli](./img/cli-use.png)
+![Example use of the cli](./img/cli-use2.png)
 
 ### FAQ
 
@@ -56,7 +56,7 @@ If you like this cli and want a new feature just send me a message! Also, contri
 
 ### Appendix / MISC
 
-Thanks [Jake](https://github.com/jakewilson/) for inspiring this project. Btw, I stole some of your code from your [tempus](https://github.com/jakewilson/tempus) cli.
+Thanks [Jake](https://github.com/jakewilson/) for inspiring little crate with [tempus-cli](https://github.com/jakewilson/tempus). 
 
 Statement of Apology: I am a really stupid person, version 0.0.1 DOESN'T WORK, I'm really sorry about that. Versions ^0.0.2 work. Please forgive me for this very poor code, it's my first package. Also, the first package I pushed was miss-spelled "greatful-cli" instead of "grateful-cli", don't install "greatful-cli" it doesn't work! I will yank it and contact the rust people to ask them about removing it. 
 
