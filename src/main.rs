@@ -122,14 +122,9 @@ fn main() -> io::Result<()> {
             if r.pattern == "history".to_string() {
                 let grateful: json::JsonValue = get_json();
                 display_history(&grateful , None);
-                // println!("{}", json::stringify_pretty(grateful, 4u16));
             } else if r.pattern == "last".to_string() {
                 let grateful: json::JsonValue = get_json();
                 display_history(&grateful , Some(1));
-                // let len = grateful["grateful"].len();
-                // if len > 0 {
-                //     println!("{}", grateful["grateful"][len - 1].to_string());
-                // }
             } else {
                 println!("Oops, {} is not a valid pattern.\nTry `grateful history` or `grateful last` instead", r.pattern);
             }
