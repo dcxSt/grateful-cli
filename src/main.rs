@@ -5,6 +5,7 @@ use json;
 use std::io;
 use log;
 mod utils;
+mod dateutils;
 
 
 /// Simple program to greet a person
@@ -15,6 +16,7 @@ struct Cli {
 }
 
 // returns true if the last entry was today 
+/// Check to see if the last time you ran this command was today or yesterday
 fn check_last_entry_today() -> bool {
     let mut grateful: json::JsonValue = get_json();
     let last_entry: json::JsonValue = grateful["grateful"].pop();
@@ -29,8 +31,10 @@ fn check_last_entry_today() -> bool {
 }
 
 // gets user input, adds it to the json
-fn grateful_repl() -> Vec<String> {
-    let datestring = chrono::offset::Local::today().to_string();
+/// Interactive user input loop
+/// Obtain three gratefulness entries from the user and return them
+fn get_user_input() -> Vec<String> {
+    let datestring = dateutils::get_today_string(); // chrono::offset::Local::today().to_string();
     let mut entry = vec![datestring];
 
     let mut buffer = String::new();
@@ -49,6 +53,12 @@ fn grateful_repl() -> Vec<String> {
     return entry;
 }
 
+fn verify_format(grateful: &json::JsonValue) {
+    for idx in 0..grateful["grateful"].len() {
+        assert!(grateful["grateful"][idx].len() == 4 , "grateful.json has been corrupted");
+    }
+}
+
 fn get_json() -> json::JsonValue {
     // if there is no directory create it
     utils::create_grateful_dir();
@@ -57,6 +67,7 @@ fn get_json() -> json::JsonValue {
     match std::fs::read_to_string(utils::get_grateful_json_path().as_str()) {
         Ok(data_str) => {
             let data = json::parse(data_str.as_str()).unwrap();
+            verify_format(&data); // checks that grateful.json is well formatted
             data
         }
         Err(e) => {
@@ -67,7 +78,7 @@ fn get_json() -> json::JsonValue {
 
 // this is the main data entry loop, to be run max once per day
 fn add_grateful_entry() -> io::Result<()> {
-    let entry: Vec<String> = grateful_repl();
+    let entry: Vec<String> = get_user_input();
 
     let mut grateful: json::JsonValue = get_json();
     grateful["grateful"].push(entry).unwrap();
@@ -85,18 +96,40 @@ fn add_grateful_entry() -> io::Result<()> {
 
 
 
+/// Display the history of grateful entries
+fn display_history(grateful: &json::JsonValue , size: Option<usize> ) {
+    let len = grateful["grateful"].len();
+    let mut size:usize = size.unwrap_or(len); // if size is None just display the whole history
+    if size > len {
+        size = len; // if the user enters a large number, just display the max
+    }
+    for idx in (len-size)..len {
+        let entry = &grateful["grateful"][idx];
+        let date_string = &entry[0];
+        println!("{}", dateutils::date_string_pretty(date_string.to_string()));
+        for msg_idx in 1..4 {
+            println!("({}) {}", 4-msg_idx, entry[msg_idx]);
+        }
+        println!(); // empty line, for display formatting purposes
+        // println!("{}" , grateful["grateful"][idx]);
+    }
+}
+
+/// Main script, parse user's input and execute commands
 fn main() -> io::Result<()> {
     match Cli::try_parse() {
         Ok(r) => {
             if r.pattern == "history".to_string() {
                 let grateful: json::JsonValue = get_json();
-                println!("{}", json::stringify_pretty(grateful, 4u16));
+                display_history(&grateful , None);
+                // println!("{}", json::stringify_pretty(grateful, 4u16));
             } else if r.pattern == "last".to_string() {
                 let grateful: json::JsonValue = get_json();
-                let len = grateful["grateful"].len();
-                if len > 0 {
-                    println!("{}", grateful["grateful"][len - 1].to_string());
-                }
+                display_history(&grateful , Some(1));
+                // let len = grateful["grateful"].len();
+                // if len > 0 {
+                //     println!("{}", grateful["grateful"][len - 1].to_string());
+                // }
             } else {
                 println!("Oops, {} is not a valid pattern.\nTry `grateful history` or `grateful last` instead", r.pattern);
             }
@@ -122,6 +155,22 @@ mod tests {
     #[test]
     fn test_get_json() {
         let _jfile : json::JsonValue = get_json();
+    }
+
+    #[test]
+    fn test_display_history() {
+        let grateful = get_json();
+        println!("Calling display history a bunch."); // `cargo test -- --nocapture`
+        println!("huge number -> should display all");
+        display_history(&grateful , Some(10000000000000));
+        println!("zero -> should display nothing");
+        display_history(&grateful , Some(0));
+        println!("1");
+        display_history(&grateful , Some(1));
+        println!("None -> should display all");
+        display_history(&grateful , None);
+        println!("2");
+        display_history(&grateful , Some(2));
     }
 }
 
