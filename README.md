@@ -42,9 +42,9 @@ The **only** other commands are `grateful history` and `grateful last`. These co
   - [ ] Allow basic options like --version, (but maybe this is extra, it's such a tiny tool)
   - [ ] *only* `grateful` with no additional args should start the data entry prompt, currently it just runs in this mode default whenever there's an error
 - [ ] Refactor 
-  - [ ] improve nondoc comments
+  - [x] improve nondoc comments
   - [ ] understand docs and rust doc comments
-  - [ ] better file structure
+  - [x] better file structure
   - [ ] make it more readable in general
 - [ ] Better logs (trace error etc)
 - [x] bugfix, `grateful last` returns the first element of the json file instead of the last one.
