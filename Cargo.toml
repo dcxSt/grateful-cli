@@ -1,6 +1,6 @@
 [package]
 name = "grateful-cli"
-version = "0.0.5"
+version = "0.0.6"
 authors = [
   "Stephen Fay <dcxstephen@gmail.com>",
   "Jake Wilson"
