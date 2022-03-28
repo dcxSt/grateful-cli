@@ -43,7 +43,7 @@ fn get_user_input() -> Vec<String> {
         buffer.clear();
         while buffer.as_str() == "" || buffer.as_str() == "\n" {
             buffer.clear();
-            print!("What are you greatful for today? ({})> ", 3 - n);
+            print!("What are you grateful for today? ({})> ", 3 - n);
             io::stdout().flush().expect("flush failed");
             stdin.read_line(&mut buffer).unwrap();
         }
@@ -117,25 +117,37 @@ fn display_history(grateful: &json::JsonValue , size: Option<usize> ) {
 
 /// Main script, parse user's input and execute commands
 fn main() -> io::Result<()> {
-    match Cli::try_parse() {
-        Ok(r) => {
-            if r.pattern == "history".to_string() {
-                let grateful: json::JsonValue = get_json();
-                display_history(&grateful , None);
-            } else if r.pattern == "last".to_string() {
-                let grateful: json::JsonValue = get_json();
-                display_history(&grateful , Some(1));
-            } else {
-                println!("Oops, {} is not a valid pattern.\nTry `grateful history` or `grateful last` instead", r.pattern);
-            }
+    let mut n_args = 0;
+    for _ in std::env::args_os() {
+        n_args += 1;
+        // println!("{:?}", argument);
+    }
+    // println!("{}", std::env::args_os());
+
+    if n_args == 1 {
+        // the only arg must be 'grateful' or a path to the grateful binary
+        if check_last_entry_today() {
+            println!("You've already written what you're grateful for today.");
+            println!("You can view your history of gratefulness with `grateful history`");
+            println!("Ending program, see ya tomorow!");
+        } else {
+            add_grateful_entry()?;
         }
-        Err(_) => {
-            if check_last_entry_today() {
-                println!("You've already written what you're grateful for today.");
-                println!("You can view your history of gratefulness with `grateful history`");
-                println!("Ending program, see ya tomorow!");
-            } else {
-                add_grateful_entry()?;
+    } else {
+        match Cli::try_parse() {
+            Ok(r) => {
+                if r.pattern == "history".to_string() {
+                    let grateful: json::JsonValue = get_json();
+                    display_history(&grateful , None);
+                } else if r.pattern == "last".to_string() {
+                    let grateful: json::JsonValue = get_json();
+                    display_history(&grateful , Some(1));
+                } else {
+                    println!("Oops, {} is not a valid pattern.\nTry `grateful history` or `grateful last` instead", r.pattern);
+                }
+            }
+            Err(_) => {
+                println!("Oops, invalid pattern.\nTry `grateful history` or `grateful last` instead");
             }
         }
     }
