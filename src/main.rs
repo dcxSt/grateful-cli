@@ -115,6 +115,12 @@ fn display_history(grateful: &json::JsonValue , size: Option<usize> ) {
     }
 }
 
+/// Display the number of grateful entries you have
+fn display_count(grateful: &json::JsonValue) {
+    let len = grateful["grateful"].len();
+    println!("You have been grateful {} days! That's a total of {} entries :^)" , len, 3 * len);
+}
+
 /// Main script, parse user's input and execute commands
 fn main() -> io::Result<()> {
     let mut n_args = 0;
@@ -142,6 +148,9 @@ fn main() -> io::Result<()> {
                 } else if r.pattern == "last".to_string() {
                     let grateful: json::JsonValue = get_json();
                     display_history(&grateful , Some(1));
+                } else if r.pattern == "count".to_string() {
+                    let grateful: json::JsonValue = get_json();
+                    display_count(&grateful);
                 } else {
                     println!("Oops, {} is not a valid pattern.\nTry `grateful history` or `grateful last` instead", r.pattern);
                 }

@@ -20,7 +20,7 @@ What are you grateful for today? (2) > carrots, mmm so fresh
 What are you grateful for today? (1) > potatoes, can't do without 'em
 ```
 
-The **only** other commands are `grateful history` and `grateful last`. These commands display all of your entries and your last entry respectively. 
+The **only** arguments you can pass are `history`, `last`, and `count`. These commands display all of your entries and your last entry respectively. 
 
 ### Demo 
 
@@ -38,7 +38,7 @@ The **only** other commands are `grateful history` and `grateful last`. These co
 ### Todo
 
 - [x] Implement tests
-- [ ] Better handling of the args
+- [ ] Better handling of the args (is this even necessary? It's such a tiny script)
   - [ ] Allow basic options like --version, (but maybe this is extra, it's such a tiny tool)
   - [ ] *only* `grateful` with no additional args should start the data entry prompt, currently it just runs in this mode default whenever there's an error
 - [ ] Refactor 
