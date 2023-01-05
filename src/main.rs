@@ -8,7 +8,7 @@ mod utils;
 mod dateutils;
 
 
-/// Simple program to greet a person
+/// Simple cli struct 
 #[derive(Parser)]
 struct Cli {
     /// The pattern to look for, this is the only argument, something like "history" or "last"
@@ -121,6 +121,16 @@ fn display_count(grateful: &json::JsonValue) {
     println!("You have been grateful {} days! That's a total of {} entries :^)" , len, 3 * len);
 }
 
+/// Display help menu
+fn display_help_menu() {
+    println!("You can run the program once per day by entering `grateful` into your cli");
+    println!("The CLI also takes these optional arguments:");
+    println!("\thelp    : displays this help menu");
+    println!("\tlast    : displays the last entry");
+    println!("\thistory : displays all previousentries");
+    println!("\tcount   : displays the number of times you've been grateful\n");
+}
+
 /// Main script, parse user's input and execute commands
 fn main() -> io::Result<()> {
     let mut n_args = 0;
@@ -130,6 +140,7 @@ fn main() -> io::Result<()> {
     }
     // println!("{}", std::env::args_os());
 
+    // help
     if n_args == 1 {
         // the only arg must be 'grateful' or a path to the grateful binary
         if check_last_entry_today() {
@@ -151,6 +162,8 @@ fn main() -> io::Result<()> {
                 } else if r.pattern == "count".to_string() {
                     let grateful: json::JsonValue = get_json();
                     display_count(&grateful);
+                } else if r.pattern == "help".to_string() {
+                    display_help_menu();
                 } else {
                     println!("Oops, {} is not a valid pattern.\nTry `grateful history` or `grateful last` instead", r.pattern);
                 }

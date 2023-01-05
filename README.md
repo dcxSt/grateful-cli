@@ -28,16 +28,17 @@ The **only** arguments you can pass are `history`, `last`, and `count`. These co
 
 ### FAQ
 
-*Who is this for?* Are you an unhappy ungrateful sod who never gives thanks for the things that you have? Or perhaps you already do this but you wanna do it from the command line! 
+*Who is this for?* Are you an unhappy ungrateful person who never gives thanks for the things that you have? Or perhaps you already do this but you wanna do it from the command line! 
 
 *Why do I need `grateful-cli`?* It enables you to give thanks more easily, and to look through all the things you've been thankful for later. Everyone on the internet says that [it](https://www.health.harvard.edu/healthbeat/giving-thanks-can-make-you-happier) [will](https://www.abbott.com/corpnewsroom/nutrition-health-and-wellness/why-giving-thanks-is-good.html) [make](https://www.inc.com/jeremy-goldman/giving-thanks-31-inspiring-quotes-about-thankfulness.html) [you](https://hbr.org/2021/11/giving-thanks-at-work-an-hbr-guide) [happier](https://www.forbes.com/sites/margiewarrell/2018/11/17/the-gift-of-giving-thanks/?sh=57a5da1d468f). 
 
-*Does this really work?* Yes it does! Doing this excersise every day actually makes you happier. An ex-psych student once told my girlfriend who told me that. 
+*Does this really work?* Yes it does! Doing this excersise every day actually makes you happier. An ex-psych student once told me that. 
 
 
 ### Todo
 
 - [x] Implement tests
+- [ ] Help menu
 - [ ] Better handling of the args (is this even necessary? It's such a tiny script)
   - [ ] Allow basic options like --version, (but maybe this is extra, it's such a tiny tool)
   - [ ] *only* `grateful` with no additional args should start the data entry prompt, currently it just runs in this mode default whenever there's an error
